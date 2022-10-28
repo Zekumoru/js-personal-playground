@@ -1,0 +1,66 @@
+/**
+
+  CSS Transition
+
+  Syntax:
+
+    .element {
+      transition: [property] [duration] [ease] [delay];
+    }
+
+  Property values: 
+
+    [property]
+
+      Which property to animate.
+      
+      For example, 'opacity' animates only the opacity
+      property from the .element.
+    
+      There's also 'all' which animates all property.
+
+    [duration]
+
+      How long to play the animation.
+
+    [ease]
+
+      Actually, it's 'timing function'.
+
+      It basically states how the animation should play.
+
+    [delay]
+
+      How long to wait before playing the animation.
+
+*/
+
+html {
+  background-color: #18191a;
+  color: #e6e6e6;
+}
+
+body {
+  padding: 20px;
+}
+
+.trigger {
+  --width: 300px;
+  --height: 300px;
+  width: var(--width);
+  height: var(--height);
+  border: 20px solid #333;
+  cursor: pointer;
+}
+
+.box {
+  width: var(--width);
+  height: var(--height);
+  background-color: firebrick;
+  pointer-events: none;
+  transition: transform 500ms ease-in-out;
+}
+
+.trigger.clicked .box {
+  transform: translate(400px, 200px) rotate(45deg);
+}
