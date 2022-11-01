@@ -1,0 +1,46 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #18191a;
+  color: #e6e6e6;
+}
+
+body {
+  padding: 16px;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: firebrick;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  animation-name: frames;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  cursor: pointer;
+}
+
+.box.paused {
+  animation-play-state: paused;
+}
+
+@keyframes frames {
+  0% {
+    height: 200px;
+  }
+  100% {
+    height: 600px;
+  }
+}
