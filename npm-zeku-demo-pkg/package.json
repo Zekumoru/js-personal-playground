@@ -1,0 +1,12 @@
+{
+  "name": "npm-zeku-demo-pkg",
+  "version": "1.0.0",
+  "description": "A simple demo npm package.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
