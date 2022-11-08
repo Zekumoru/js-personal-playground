@@ -29,6 +29,16 @@ input {
   font-size: 1.2rem;
 }
 
+input:valid {
+  border-color: lime;
+  outline-color: lime;
+}
+
+input:invalid {
+  border-color: firebrick;
+  outline-color: firebrick;
+}
+
 button {
   width: 200px;
   font-size: 1.2rem;
