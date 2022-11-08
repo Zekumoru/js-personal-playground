@@ -13,19 +13,19 @@
     <form novalidate>
       <div class="field">
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" required>
       </div>
       <div class="field">
         <label for="country">Country:</label>
-        <input type="text" name="country" id="country">
+        <input type="text" name="country" id="country" required>
       </div>
       <div class="field">
         <label for="zip-code">Zip code:</label>
-        <input type="tel" name="zip-code" id="zip-code">
+        <input type="tel" name="zip-code" id="zip-code" pattern="(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)" required>
       </div>
       <div class="field">
         <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password" minlength="8" required>
       </div>
       <div class="field">
         <label for="confirm-password">Confirm password:</label>
