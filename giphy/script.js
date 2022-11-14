@@ -1,6 +1,7 @@
 const search = 'cats';
 const img = document.querySelector('img');
 const button = document.querySelector('button');
+const statusBar = document.querySelector('.status');
 let fetching = false;
 
 button.addEventListener('click', () => {
@@ -11,9 +12,12 @@ setImage(search);
 
 function setImage(search) {
   fetching = true;
+  statusBar.textContent = 'Fetching image...';
+
   getGiphy(search, (url) => {
     img.src = url;
-    fetching = false;
+  statusBar.textContent = 'Fetched image.';
+  fetching = false;
   });
 }
 

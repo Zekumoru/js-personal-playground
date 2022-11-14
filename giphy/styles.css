@@ -25,3 +25,14 @@ button {
   padding: 4px 8px;
   cursor: pointer;
 }
+
+.search-box {
+  display: flex;
+  gap: 16px;
+}
+
+input[type=text] {
+  width: 240px;
+  min-height: none;
+  padding: 0 4px;
+}
