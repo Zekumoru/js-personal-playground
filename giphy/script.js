@@ -11,24 +11,25 @@ button.addEventListener('click', () => {
 setImage(search);
 
 function setImage(search) {
-  fetching = true;
-  statusBar.textContent = 'Fetching image...';
-
   getGiphy(search, (url) => {
+    if (!url) return;
     img.src = url;
-  statusBar.textContent = 'Fetched image.';
-  fetching = false;
   });
 }
 
 function getGiphy(search, urlFn) {
+  fetching = true;
+  statusBar.textContent = 'Fetching image...';
+
   fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=${search}`, {
     mode: 'cors',
-  }).then((response) => {
-    return response.json();
-  }).then((response) => {
+  }).then((response) => response.json()).then((response) => {
+    fetching = false;
     if (typeof urlFn === 'function') urlFn(response.data.images.original.url);
+    statusBar.textContent = 'Fetched image.';
   }).catch(() => {
+    fetching = false;
     if (typeof urlFn === 'function') urlFn(null);
+    statusBar.textContent = `Image could not be found!`;
   });
 }
