@@ -4,7 +4,24 @@
   box-sizing: border-box;
 }
 
+html, body {
+  min-height: 100vh;
+}
+
 html {
   background-color: #18191a;
   color: #e6e6e6;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+button {
+  padding: 4px 8px;
+  cursor: pointer;
 }
