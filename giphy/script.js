@@ -40,9 +40,9 @@ function getGiphy(search, urlFn) {
     mode: 'cors',
   }).then((response) => response.json()).then((response) => {
     fetching = false;
-    loading = true;
     outcome.textContent = 'Loading image...';
     if (typeof urlFn === 'function') urlFn(response.data.images.original.url);
+    loading = true;
   }).catch(() => {
     fetching = false;
     if (typeof urlFn === 'function') urlFn(null);
