@@ -25,8 +25,8 @@ function search(value) {
 
 function setImage(search) {
   getGiphy(search, (url) => {
-    if (!url) return;
-    img.src = url;
+    img.src = url ?? '';
+    img.alt = (url)? search : 'Error';
   });
 }
 
