@@ -1,14 +1,21 @@
-const search = 'cats';
 const img = document.querySelector('img');
+const input = document.querySelector('input');
 const button = document.querySelector('button');
-const statusBar = document.querySelector('.status');
+const outcome = document.querySelector('.status');
 let fetching = false;
 
-button.addEventListener('click', () => {
-  setImage(search);
+button.addEventListener('click', () => search(input.value));
+input.addEventListener('keyup', (e) => {
+  if (e.key !== 'Enter') return;
+  search(input.value);
 });
 
-setImage(search);
+setImage('cats');
+
+function search(value) {
+  if (!value) return;
+  setImage(value);
+}
 
 function setImage(search) {
   getGiphy(search, (url) => {
@@ -19,17 +26,17 @@ function setImage(search) {
 
 function getGiphy(search, urlFn) {
   fetching = true;
-  statusBar.textContent = 'Fetching image...';
+  outcome.textContent = 'Fetching image...';
 
   fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=${search}`, {
     mode: 'cors',
   }).then((response) => response.json()).then((response) => {
     fetching = false;
     if (typeof urlFn === 'function') urlFn(response.data.images.original.url);
-    statusBar.textContent = 'Fetched image.';
+    outcome.textContent = 'Fetched image.';
   }).catch(() => {
     fetching = false;
     if (typeof urlFn === 'function') urlFn(null);
-    statusBar.textContent = `Image could not be found!`;
+    outcome.textContent = `Image could not be found!`;
   });
 }
