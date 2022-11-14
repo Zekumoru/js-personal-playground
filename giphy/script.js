@@ -3,6 +3,12 @@ const input = document.querySelector('input');
 const button = document.querySelector('button');
 const outcome = document.querySelector('.status');
 let fetching = false;
+let loading = false;
+
+img.addEventListener('load', () => {
+  outcome.textContent = `Loaded image.`;
+  loading = false;
+});
 
 button.addEventListener('click', () => search(input.value));
 input.addEventListener('keyup', (e) => {
@@ -25,6 +31,8 @@ function setImage(search) {
 }
 
 function getGiphy(search, urlFn) {
+  if (fetching || loading) return;
+
   fetching = true;
   outcome.textContent = 'Fetching image...';
 
@@ -32,8 +40,9 @@ function getGiphy(search, urlFn) {
     mode: 'cors',
   }).then((response) => response.json()).then((response) => {
     fetching = false;
+    loading = true;
+    outcome.textContent = 'Loading image...';
     if (typeof urlFn === 'function') urlFn(response.data.images.original.url);
-    outcome.textContent = 'Fetched image.';
   }).catch(() => {
     fetching = false;
     if (typeof urlFn === 'function') urlFn(null);
