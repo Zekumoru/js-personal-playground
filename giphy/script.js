@@ -25,11 +25,12 @@ function search(value) {
 
 function setImage(search) {
   getGiphy(search, (url) => {
-    img.src = url ?? '';
-    img.alt = (url)? search : 'Error';
+    img.src = url;
+    img.alt = '';
   }).catch((error) => {
     fetching = false;
-    if (typeof urlFn === 'function') urlFn(null);
+    img.src = '';
+    img.alt = 'Error';
     outcome.textContent = `Image could not be found! Error: ${error}`;
   });
 }
