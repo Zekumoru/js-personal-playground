@@ -1,9 +1,14 @@
+// promise-chain.js
+// The main goal of this program is to be able to handle
+// promises in their order when they resolve.
+//
+
 const db = {
   docs: [],
   post(doc) {
     return new Promise((resolve) => {
       this.docs.push(doc);
-      resolve();
+      setTimeout(resolve.bind(null, doc), 3000);;
     });
   }
 };
@@ -36,13 +41,15 @@ promise.then(function () {
 });
 
 // ES7 Alternative
+// It does all tasks concurrently, not waiting for
+// the one to resolve before doing the next
+//
 // (async () => {
 //   db.docs = [];
+  
+//   const asyncDocs = docs.map((doc) => db.post(doc));
+//   const results = await Promise.all(asyncDocs);
 
-//   for (let doc of docs) {
-//     await db.post(doc);
-//     console.log(doc);
-//   }
-
+//   results.forEach((result) => console.log(result));
 //   console.log(db.docs);
 // })();
