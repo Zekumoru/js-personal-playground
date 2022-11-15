@@ -40,6 +40,19 @@
   }).then((text) => {
     console.log(text);
   });
+
+  // ALTERNATIVE using async and await
+  // const test2 = new Promise(async (resolve, reject) => {
+  //   // By making the executor asynchronous and awaiting
+  //   // for a Promise.resolve(), we're basically
+  //   // making what's below the await asynchronous.
+  //   await Promise.resolve();
+  //   console.log('Promise 2');
+    
+  //   resolve('Resolve 3');
+  // }).then((text) => {
+  //   console.log(text);
+  // });
   
   console.log('Synchronous 4');
 
