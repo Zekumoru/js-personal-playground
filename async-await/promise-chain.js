@@ -34,3 +34,15 @@ docs.forEach(function (doc) {
 promise.then(function () {
   console.log(db.docs);
 });
+
+// ES7 Alternative
+// (async () => {
+//   db.docs = [];
+
+//   for (let doc of docs) {
+//     await db.post(doc);
+//     console.log(doc);
+//   }
+
+//   console.log(db.docs);
+// })();
