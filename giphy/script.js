@@ -27,25 +27,27 @@ function setImage(search) {
   getGiphy(search, (url) => {
     img.src = url ?? '';
     img.alt = (url)? search : 'Error';
+  }).catch((error) => {
+    fetching = false;
+    if (typeof urlFn === 'function') urlFn(null);
+    outcome.textContent = `Image could not be found! Error: ${error}`;
   });
 }
 
-function getGiphy(search, urlFn) {
+async function getGiphy(search, urlFn) {
   if (fetching || loading) return;
 
   fetching = true;
   outcome.textContent = 'Fetching image...';
 
-  fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=${search}`, {
+  const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=${search}`, {
     mode: 'cors',
-  }).then((response) => response.json()).then((response) => {
-    fetching = false;
-    outcome.textContent = 'Loading image...';
-    if (typeof urlFn === 'function') urlFn(response.data.images.original.url);
-    loading = true;
-  }).catch(() => {
-    fetching = false;
-    if (typeof urlFn === 'function') urlFn(null);
-    outcome.textContent = `Image could not be found!`;
   });
+  
+  const json = await response.json();
+  
+  fetching = false;
+  outcome.textContent = 'Loading image...';
+  if (typeof urlFn === 'function') urlFn(json.data.images.original.url);
+  loading = true;
 }
