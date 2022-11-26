@@ -17,8 +17,16 @@ const forLoop = {
   }
 };
 
+const recursion = {
+  name: 'recursion',
+  sumTo(n) {
+    if (n == 0) return 0;
+    return n + recursion.sumTo(n - 1);
+  }
+};
+
 function run(obj, n) {
   console.log(`${obj.name}: ${obj.sumTo(n)}`)
 }
 
-run(forLoop, 100);
+run(recursion, 100);
