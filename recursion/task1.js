@@ -37,4 +37,12 @@ function run(obj, n) {
   console.log(`${obj.name}: ${obj.sumTo(n)}`)
 }
 
-run(arithProgression, 100);
+function runTest(obj, n) {
+  console.time(obj.name);
+  obj.sumTo(n);
+  console.timeEnd(obj.name);
+}
+
+runTest(forLoop, 100);
+runTest(recursion, 100);
+runTest(arithProgression, 100);
