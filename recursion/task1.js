@@ -28,7 +28,6 @@ const recursion = {
 const arithProgression = {
   name: 'arithProgression',
   sumTo(n) {
-    if (n == 0) return 0;
     return (n * (1 + n)) / 2;
   }
 }
