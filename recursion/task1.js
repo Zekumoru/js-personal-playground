@@ -25,8 +25,16 @@ const recursion = {
   }
 };
 
+const arithProgression = {
+  name: 'arithProgression',
+  sumTo(n) {
+    if (n == 0) return 0;
+    return (n * (1 + n)) / 2;
+  }
+}
+
 function run(obj, n) {
   console.log(`${obj.name}: ${obj.sumTo(n)}`)
 }
 
-run(recursion, 100);
+run(arithProgression, 100);
