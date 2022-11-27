@@ -142,9 +142,26 @@ const q7 = new Question('Question 7: Parse a multi-dimensional array',
   }
 });
 
+// Question 8: Sum of squares
+// Write a function that sums squares of numbers 
+// in list that may contain more lists
+const q8 = new Question('Question 8: Sum of squares', [10,[[10],10],[10]], {
+  sumSquares(array) {
+    let sum = 0;
+    for (const item of array) {
+      if (typeof item === 'number') sum += item**2;
+      if (Array.isArray(item)) sum += this.sumSquares(item);
+    }
+    return sum;
+  },
+  solve() {
+    return this.sumSquares(this.input);
+  }
+});
+
 function run(question) {
   console.log(question.name);
   console.log(question.solve());
 }
 
-run(q7);
+run(q8);
