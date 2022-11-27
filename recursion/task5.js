@@ -34,9 +34,18 @@ const loop = {
   }
 }
 
+const recursion = {
+  name: 'recursion',
+  printListReverse(list) {
+    if (!list) return;
+    this.printListReverse(list.next);
+    console.log(list.value);
+  }
+}
+
 function run(obj, list) {
   console.log(obj.name);
   obj.printListReverse(list);
 }
 
-run(loop, list);
+run(recursion, list);
