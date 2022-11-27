@@ -9,6 +9,8 @@
 //
 
 function collatz(n) {
+  if (n <= 0) throw new Error('number must be a positive integer');
+
   console.log(n);
   if (n === 1) return;
   if (n % 2 === 0) return collatz(n / 2);
