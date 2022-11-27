@@ -124,9 +124,27 @@ const q6 = new Question('Question 6: Search JS object', [
   }
 });
 
+// Question 7: Parse a multi-dimensional array
+// Given a multi-dimensional integer array, return the 
+// total number of integers stored inside this array
+const q7 = new Question('Question 7: Parse a multi-dimensional array',
+  [[[5], 3], 0, 2, ['foo'], [], [4, [5, 6]]], {
+  totalIntegers(array) {
+    let counter = 0;
+    for (const item of array) {
+      if (typeof item === 'number') counter++;
+      if (Array.isArray(item)) counter += this.totalIntegers(item);
+    }
+    return counter;
+  },
+  solve() {
+    return this.totalIntegers(this.input);
+  }
+});
+
 function run(question) {
   console.log(question.name);
   console.log(question.solve());
 }
 
-run(q6);
+run(q7);
