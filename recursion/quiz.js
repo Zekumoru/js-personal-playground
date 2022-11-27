@@ -159,9 +159,24 @@ const q8 = new Question('Question 8: Sum of squares', [10,[[10],10],[10]], {
   }
 });
 
+// Question 9: Replicate number argument
+// The function should return an array containing repetitions
+// of the number argument. For instance, replicate(3, 5)
+// should return [5,5,5]. If the times argument is negative,
+// return an empty array.
+const q9 = new Question('Question 9: Replicate number argument', [3, 5], {
+  replicate(times, number) {
+    if (times <= 0) return [];
+    return [number].concat(this.replicate(times - 1, number));
+  },
+  solve() {
+    return this.replicate.apply(this, this.input);
+  }
+});
+
 function run(question) {
   console.log(question.name);
   console.log(question.solve());
 }
 
-run(q8);
+run(q9);
