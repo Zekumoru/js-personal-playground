@@ -28,9 +28,22 @@ const q1 = new Question('Question 1: Sum all numbers', 3, {
   }
 });
 
+// Question 2: Power function
+// Write a function called power which takes in a 
+// base and an exponent. If the exponent is 0, return 1.
+const q2 = new Question('Question 2: Power function', [2, 4], {
+  power(base, exponent) {
+    if (exponent == 0) return 1;
+    return base * this.power(base, exponent - 1);
+  },
+  solve() {
+    return this.power.apply(this, this.input);
+  }
+});
+
 function run(question) {
   console.log(question.name);
   console.log(question.solve());
 }
 
-run(q1);
+run(q2);
