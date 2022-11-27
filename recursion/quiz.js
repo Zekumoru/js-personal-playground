@@ -90,9 +90,43 @@ const q5 = new Question('Question 5: Product of an array', [1, 2, 3, 10], {
   }
 });
 
+// Question 6: Search JS object
+// Write a function called contains that searches for 
+// a value in a nested object. It returns true if the
+// object contains that value.
+const q6 = new Question('Question 6: Search JS object', [
+  {
+    data: {
+      info: {
+        stuff: {
+          thing: {
+            moreStuff: {
+              magicNumber: 44,
+              something: 'foo2'
+            }
+          }
+        }
+      }
+    }
+  },
+  44
+], {
+  contains(object, value) {
+    let found = false;
+    Object.values(object).forEach((v) => {
+      if (v === value) found = true;
+      if (typeof v === 'object') found ||= this.contains(v, value);
+    });
+    return found;
+  },
+  solve() {
+    return this.contains.apply(this, this.input);
+  }
+});
+
 function run(question) {
   console.log(question.name);
   console.log(question.solve());
 }
 
-run(q5);
+run(q6);
