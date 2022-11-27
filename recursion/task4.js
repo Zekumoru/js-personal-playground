@@ -28,8 +28,18 @@ const loop = {
   }
 }
 
+const recursion = {
+  name: 'recursion',
+  printList(list) {
+    if (!list) return;
+    console.log(list.value);
+    this.printList(list.next);
+  }
+}
+
 function run(obj, list) {
+  console.log(obj.name);
   obj.printList(list);
 }
 
-run(loop, list);
+run(recursion, list);
