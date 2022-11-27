@@ -41,9 +41,21 @@ const q2 = new Question('Question 2: Power function', [2, 4], {
   }
 });
 
+// Question 3: Calculate factorial
+// Write a function that returns the factorial of a number.
+const q3 = new Question('Question 3: Calculate factorial', 5, {
+  factorial(n) {
+    if (n <= 1) return 1;
+    return n * this.factorial(n - 1);
+  },
+  solve() {
+    return this.factorial(this.input);
+  }
+});
+
 function run(question) {
   console.log(question.name);
   console.log(question.solve());
 }
 
-run(q2);
+run(q3);
