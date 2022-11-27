@@ -77,9 +77,22 @@ const q4 = new Question('Question 4: Check all values in an array', [
   }
 });
 
+// Question 5: Product of an array
+// Write a function called productOfArray which takes in
+// an array of numbers and returns the product of them all
+const q5 = new Question('Question 5: Product of an array', [1, 2, 3, 10], {
+  productOfArray(array) {
+    if (!array.length) return 1;
+    return array[0] * this.productOfArray(array.slice(1));
+  },
+  solve() {
+    return this.productOfArray(this.input);
+  }
+});
+
 function run(question) {
   console.log(question.name);
   console.log(question.solve());
 }
 
-run(q4);
+run(q5);
