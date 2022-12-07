@@ -13,7 +13,11 @@ test('arguments are correct', () => {
 });
 
 test('results are correct', () => {
-  console.log(mockCallback.mock.results);
   expect(mockCallback.mock.results[0].value).toBe(2);
   expect(mockCallback.mock.results[1].value).toBe(3);
+});
+
+test('mock forEach', () => {
+  const mockedForEach = jest.fn(forEach).mockImplementationOnce(() => 'hi');
+  expect(mockedForEach()).toMatch('hi');
 });
