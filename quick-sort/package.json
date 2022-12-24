@@ -5,7 +5,8 @@
   "main": "script.js",
   "scripts": {
     "test": "jest",
-    "jest": "jest --watch"
+    "jest": "jest --watch",
+    "dev": "nodemon"
   },
   "keywords": [],
   "author": "",
