@@ -1,0 +1,22 @@
+{
+  "name": "quick-sort",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest",
+    "jest": "jest --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "@zekumoru-dev/merge-sort": "^1.0.0"
+  },
+  "type": "module"
+}
