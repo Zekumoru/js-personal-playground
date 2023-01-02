@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Counter from './components/Counter';
 import MyComponent from './components/MyComponent';
 
 class App extends React.Component {
@@ -17,6 +18,8 @@ class App extends React.Component {
     return (
       <div>
         <MyComponent title="React" onButtonClicked={this.onClickBtn} />
+        <h2>Counter</h2>
+        <Counter />
       </div>
     );
   }
