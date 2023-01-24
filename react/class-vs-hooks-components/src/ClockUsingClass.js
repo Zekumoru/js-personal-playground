@@ -1,5 +1,4 @@
 import React from 'react';
-import './ClockUsingClass.css';
 
 class ClockUsingClass extends React.Component {
   interval = null;
@@ -27,7 +26,7 @@ class ClockUsingClass extends React.Component {
 
   render() {
     return (
-      <div className="ClockUsingClass">
+      <div className="ClockUsingClass clock">
         <h1>Clock Using Class</h1>
         <h2>It is currently {this.state.date.toLocaleTimeString()}</h2>
       </div>
