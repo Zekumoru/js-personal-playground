@@ -13,18 +13,28 @@ const todosReducer = (todos, action) => {
   switch (action.type) {
     case ACTIONS.ADD_TODO:
       return [
-        ...todos,
         {
           id: nanoid(),
           name: action.payload.name,
           complete: false,
         },
+        ...todos,
       ];
     case ACTIONS.TOGGLE_TODO:
-      return todos.map((todo) => {
-        if (todo.id !== action.payload.id) return todo;
-        return { ...todo, complete: !todo.complete };
-      });
+      const completed = [];
+      return [
+        ...todos
+          .map((todo) => {
+            if (todo.id !== action.payload.id) return todo;
+            return { ...todo, complete: !todo.complete };
+          })
+          .filter((todo) => {
+            if (!todo.complete) return true;
+            completed.push(todo);
+            return false;
+          }),
+        ...completed,
+      ];
     case ACTIONS.DELETE_TODO:
       return todos.filter((todo) => todo.id !== action.payload.id);
     default:
