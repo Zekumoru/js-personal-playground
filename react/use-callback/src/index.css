@@ -1,0 +1,19 @@
+* {
+  font-size: 3rem;
+}
+
+html:has(.App.dark) {
+  color: white;
+  background-color: #18191a;
+}
+
+button {
+  cursor: pointer;
+}
+
+.App.dark button {
+  color: white;
+  background-color: #18191a;
+  border: 2px solid white;
+  border-radius: 2px;
+}
