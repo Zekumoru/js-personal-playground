@@ -1,0 +1,40 @@
+.Shop {
+  h3 {
+    margin: 16px 0;
+  }
+}
+
+.Shop .entries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    font-size: 1.4rem;
+
+    .icon {
+      width: 2rem;
+    }
+  }
+}
+
+.Shop .items-list {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  li {
+    max-width: 200px;
+  }
+
+  img {
+    width: 100%;
+    background-color: rgb(187, 191, 196);
+    border-radius: 4px;
+  }
+}

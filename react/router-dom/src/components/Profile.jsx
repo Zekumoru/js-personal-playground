@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
-
 const Profile = () => {
   return (
-    <div>
-      <h1>Hello from Profile</h1>
-      <Link to="/">Go back</Link>
+    <div className="Profile">
+      <div className="container">
+        <h1>Profile</h1>
+        <p>Nothing to see here, peeps!</p>
+      </div>
     </div>
   );
 };
