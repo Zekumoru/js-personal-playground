@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-function Form({ children }) {
+function Form({ children, onSubmit }) {
   // 'handleInvalid' is called on component's mount which is
   // not ideal if we want to only handle invalid on the
   // submit button's click, hence we use the 'mounted'
@@ -22,9 +22,8 @@ function Form({ children }) {
   }, []);
 
   const handleSubmit = (e) => {
-    console.log('Submitted!');
-    console.dir(e.target);
     e.preventDefault();
+    if (typeof onSubmit === 'function') onSubmit(e);
   };
 
   const handleInvalid = (e) => {
@@ -42,7 +41,7 @@ function Form({ children }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} onInvalid={handleInvalid}>
+    <form onSubmit={handleSubmit} onInvalid={handleInvalid} data-testid="form">
       {children}
     </form>
   );
