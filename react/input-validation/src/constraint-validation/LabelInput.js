@@ -1,4 +1,5 @@
-import React, { useEffect, useId, useRef, useState } from 'react';
+import React, { useId } from 'react';
+import useConstraintValidation from './useConstraintValidation';
 
 function LabelInput({
   label,
@@ -8,59 +9,26 @@ function LabelInput({
   ...inputProps
 }) {
   const id = useId();
-  const [value, setValue] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [aggressive, setAggressive] = useState(false);
-  const inputRef = useRef(null);
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-    setErrorMessage('');
-
-    if (typeof validate === 'function') {
-      e.target.setCustomValidity(validate(e.target.value));
-    }
-
-    e.target.reportValidity();
-  };
-
-  const handleInvalid = (e) => {
-    if (!e.target.classList.contains('validate')) return;
-    setErrorMessage(
-      e.target.value === '' ? requiredMessage : e.target.validationMessage
-    );
-  };
-
-  const handleBlur = (e) => {
-    if (!aggressive || requiredMessage !== '') {
-      setAggressive(true);
-    }
-  };
-
-  useEffect(() => {
-    // this fixes the error where focusing on the input then
-    // focusing out, will not show the error that the input is required
-    // since aggressive inside handleBlur is not set to true yet
-    // hence when calling reportValidity from there, handleInvalid
-    // will still have the aggressive to false
-    inputRef.current.reportValidity();
-  }, [aggressive]);
+  const [data, handlers] = useConstraintValidation({
+    validate,
+    requiredMessage,
+  });
 
   return (
     <div>
       <label htmlFor={id}>{label}</label>
       <input
-        ref={inputRef}
+        ref={data.inputRef}
         id={id}
-        className={`${className} ${aggressive ? 'validate' : ''}`}
+        className={`${className} ${data.aggressive ? 'validate' : ''}`}
         type="text"
-        value={value}
-        onChange={handleChange}
-        onInvalid={handleInvalid}
-        onBlur={handleBlur}
+        value={data.value}
+        onChange={handlers.change}
+        onInvalid={handlers.invalid}
+        onBlur={handlers.blur}
         {...inputProps}
       />
-      <div className="error-message">{errorMessage}</div>
+      <div className="error-message">{data.errorMessage}</div>
     </div>
   );
 }
