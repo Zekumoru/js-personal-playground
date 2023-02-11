@@ -1,6 +1,12 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
 
-function LabelInput({ label, validate, className = '', ...inputProps }) {
+function LabelInput({
+  label,
+  validate,
+  className = '',
+  requiredMessage = '',
+  ...inputProps
+}) {
   const id = useId();
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -20,11 +26,15 @@ function LabelInput({ label, validate, className = '', ...inputProps }) {
 
   const handleInvalid = (e) => {
     if (!e.target.classList.contains('validate')) return;
-    setErrorMessage(e.target.validationMessage);
+    setErrorMessage(
+      e.target.value === '' ? requiredMessage : e.target.validationMessage
+    );
   };
 
-  const handleBlur = () => {
-    if (!aggressive) setAggressive(true);
+  const handleBlur = (e) => {
+    if (!aggressive || requiredMessage !== '') {
+      setAggressive(true);
+    }
   };
 
   useEffect(() => {

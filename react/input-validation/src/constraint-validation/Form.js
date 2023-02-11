@@ -1,8 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 function Form({ children }) {
+  // 'handleInvalid' is called on component's mount which is
+  // not ideal if we want to only handle invalid on the
+  // submit button's click, hence we use the 'mounted'
+  // state to prevent the aforementioned problem.
   const [mounted, setMounted] = useState(false);
-  const firstRef = useRef({ first: true });
+
+  // When the form is submitted without filling in any
+  // of the inputs elements, the form should show error
+  // messages related to them.
+  //
+  // But the problem is how to denote them to "be validated"?
+  // The 'validate' CSS class denotes it hence we use
+  // startsRef which tells the form to add the 'validate'
+  // class if the inputs element don't have them yet.
+  const startsRef = useRef({});
 
   useEffect(() => {
     setMounted(true);
@@ -15,8 +28,8 @@ function Form({ children }) {
   };
 
   const handleInvalid = (e) => {
-    if (mounted && firstRef.current.first) {
-      firstRef.current.first = false;
+    if (mounted && !startsRef.current[e.target.id]) {
+      startsRef.current[e.target.id] = true;
       e.target.classList.add('validate');
 
       // this should be last in this if body, otherwise
