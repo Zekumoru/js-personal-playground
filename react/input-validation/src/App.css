@@ -1,0 +1,13 @@
+label {
+  display: block;
+  font-size: 1.6rem;
+}
+
+label + input {
+  margin-top: 4px;
+}
+
+input {
+  padding: 6px;
+  font-size: 2rem;
+}
