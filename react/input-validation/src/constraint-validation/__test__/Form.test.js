@@ -157,4 +157,38 @@ describe('Form', () => {
 
     expect(screen.getByText(/username is required/i)).toBeInTheDocument();
   });
+
+  it('should not show the error message when typed in an invalid input the first time', async () => {
+    const user = userEvent.setup();
+    render(
+      <Form>
+        <LabelInput
+          label="Username"
+          placeholder="e.g. Foo, Bar, Zalgo"
+          requiredMessage="Username is required"
+          validate={(input) => {
+            if (!/^[A-Z\s]*$/i.test(input)) return 'Only letters are allowed';
+            return '';
+          }}
+          required
+          data-testid="username-input"
+        />
+        <LabelInput
+          label="Password"
+          type="password"
+          requiredMessage="Password is required"
+          required
+          data-testid="password-input"
+        />
+        <button>Submit</button>
+      </Form>
+    );
+
+    await user.click(screen.getByLabelText(/username/i));
+    await user.keyboard('a2');
+
+    expect(
+      screen.queryByText(/only letters are allowed/i)
+    ).not.toBeInTheDocument();
+  });
 });

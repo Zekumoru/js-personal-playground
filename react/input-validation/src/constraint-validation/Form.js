@@ -27,7 +27,7 @@ function Form({ children, onSubmit }) {
   };
 
   const handleInvalid = (e) => {
-    if (mounted && !startsRef.current[e.target.id]) {
+    if (mounted && !startsRef.current[e.target.id] && e.target.value === '') {
       startsRef.current[e.target.id] = true;
       e.target.classList.add('validate');
 
