@@ -13,6 +13,9 @@ const dark = {
 const theme: DefaultTheme = {
   light,
   dark,
+  button: {
+    fontFamily: 'cursive',
+  },
 };
 
 export default theme;
