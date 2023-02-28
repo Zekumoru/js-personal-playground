@@ -3,10 +3,11 @@ import styled from 'styled-components';
 export const StyledButton = styled.button<{
   variant?: 'outline';
 }>`
-  border: 2px solid #18191a;
-  background-color: ${({ variant }) =>
-    variant === 'outline' ? 'transparent' : '#18191a'};
-  color: ${({ variant }) => (variant === 'outline' ? '#18191a' : 'white')};
+  border: 2px solid ${({ theme }) => theme.dark.primary};
+  background-color: ${({ variant, theme }) =>
+    variant === 'outline' ? 'transparent' : theme.dark.primary};
+  color: ${({ variant, theme }) =>
+    variant === 'outline' ? theme.dark.primary : 'white'};
   padding: 12px 24px;
   border-radius: 2px;
   box-sizing: border-box;
