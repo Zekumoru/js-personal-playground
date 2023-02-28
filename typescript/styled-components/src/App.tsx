@@ -1,10 +1,11 @@
-import StyledButton from './components/Button';
+import StyledButton, { FancyButton } from './components/Button';
 
 function App() {
   return (
     <div className="App">
-      <StyledButton>Click me!</StyledButton>
-      <StyledButton variant="outline">Click me!</StyledButton>
+      <StyledButton>Styled Button</StyledButton>
+      <StyledButton variant="outline">Outlined Styled Button</StyledButton>
+      <FancyButton>Fancy Button</FancyButton>
     </div>
   );
 }
