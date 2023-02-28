@@ -19,3 +19,9 @@ export const FancyButton = styled(StyledButton)`
   padding: 14px 26px;
   background-image: linear-gradient(109.6deg, #9cfcf8 11.2%, #6e7bfb 91.1%);
 `;
+
+export const SubmitButton = styled(FancyButton).attrs({
+  type: 'submit',
+})`
+  background-image: linear-gradient(25deg, #d64c7f, #ee4758 50%);
+`;
