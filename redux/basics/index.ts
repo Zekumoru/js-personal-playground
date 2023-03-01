@@ -1,38 +1,61 @@
-import { createStore, bindActionCreators } from 'redux';
+import { createStore, bindActionCreators, combineReducers } from 'redux';
 
-interface OrderAction {
-  type: 'cake-ordered';
+interface CakeAction {
+  type: 'cake-ordered' | 'cake-restocked';
   payload: number;
 }
 
-interface RestockAction {
-  type: 'cake-restocked';
+interface IceCreamAction {
+  type: 'ice-cream-ordered' | 'ice-cream-restocked';
   payload: number;
 }
 
-type Action = OrderAction | RestockAction;
+type Action = CakeAction | IceCreamAction;
 
-const orderCake = () => {
-  const action: OrderAction = {
+const orderCakes = (quantity = 1) => {
+  const action: CakeAction = {
     type: 'cake-ordered',
-    payload: 1,
+    payload: quantity,
   };
   return action;
 };
 
 const restockCakes = (quantity = 1) => {
-  const action: RestockAction = {
+  const action: CakeAction = {
     type: 'cake-restocked',
     payload: quantity,
   };
   return action;
 };
 
-const initialState = {
+const orderIceCreams = (quantity = 1) => {
+  const action: IceCreamAction = {
+    type: 'ice-cream-ordered',
+    payload: quantity,
+  };
+  return action;
+};
+
+const restockIceCreams = (quantity = 1) => {
+  const action: IceCreamAction = {
+    type: 'ice-cream-restocked',
+    payload: quantity,
+  };
+  return action;
+};
+
+const initialCakeState = {
   numOfCakes: 10,
 };
 
-const reducer = (state = initialState, action: Action): typeof state => {
+const initialIceCreamState = {
+  numOfIceCreams: 10,
+};
+
+const cakeReducer = (
+  state = initialCakeState,
+  action: CakeAction
+): typeof state => {
   switch (action.type) {
     case 'cake-ordered':
       return {
@@ -49,17 +72,55 @@ const reducer = (state = initialState, action: Action): typeof state => {
   }
 };
 
-const store = createStore(reducer);
-const actions = bindActionCreators({ orderCake, restockCakes }, store.dispatch);
+const iceCreamReducer = (
+  state = initialIceCreamState,
+  action: IceCreamAction
+): typeof state => {
+  switch (action.type) {
+    case 'ice-cream-ordered':
+      return {
+        ...state,
+        numOfIceCreams: state.numOfIceCreams - action.payload,
+      };
+    case 'ice-cream-restocked':
+      return {
+        ...state,
+        numOfIceCreams: state.numOfIceCreams + action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({
+  cake: cakeReducer,
+  iceCream: iceCreamReducer,
+});
+
+const store = createStore(rootReducer);
+const actions = bindActionCreators(
+  {
+    orderCakes,
+    restockCakes,
+    orderIceCreams,
+    restockIceCreams,
+  },
+  store.dispatch
+);
+
 console.log('Initial state:', store.getState());
 
 const unsubscribe = store.subscribe(() => {
   console.log('Updated state:', store.getState());
 });
 
-actions.orderCake();
-actions.orderCake();
-actions.orderCake();
+actions.orderCakes();
+actions.orderCakes();
+actions.orderCakes();
 actions.restockCakes(3);
+
+actions.orderIceCreams();
+actions.orderIceCreams();
+actions.restockIceCreams(2);
 
 unsubscribe();
