@@ -1,5 +1,11 @@
-import { createStore, bindActionCreators, combineReducers } from 'redux';
+import {
+  createStore,
+  bindActionCreators,
+  combineReducers,
+  applyMiddleware,
+} from 'redux';
 import { produce } from 'immer';
+import { createLogger } from 'redux-logger';
 
 interface CakeAction {
   type: 'cake-ordered' | 'cake-restocked';
@@ -94,7 +100,9 @@ const rootReducer = combineReducers({
   iceCream: iceCreamReducer,
 });
 
-const store = createStore(rootReducer);
+const logger = createLogger();
+
+const store = createStore(rootReducer, applyMiddleware(logger));
 const actions = bindActionCreators(
   {
     orderCakes,
@@ -107,10 +115,6 @@ const actions = bindActionCreators(
 
 console.log('Initial state:', store.getState());
 
-const unsubscribe = store.subscribe(() => {
-  console.log('Updated state:', store.getState());
-});
-
 actions.orderCakes();
 actions.orderCakes();
 actions.orderCakes();
@@ -119,5 +123,3 @@ actions.restockCakes(3);
 actions.orderIceCreams();
 actions.orderIceCreams();
 actions.restockIceCreams(2);
-
-unsubscribe();
