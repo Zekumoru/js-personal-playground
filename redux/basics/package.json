@@ -7,6 +7,7 @@
     "start": "nodemon"
   },
   "dependencies": {
+    "immer": "^9.0.19",
     "nodemon": "^2.0.20",
     "redux": "^4.2.1"
   },

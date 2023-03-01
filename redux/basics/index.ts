@@ -1,4 +1,5 @@
 import { createStore, bindActionCreators, combineReducers } from 'redux';
+import { produce } from 'immer';
 
 interface CakeAction {
   type: 'cake-ordered' | 'cake-restocked';
@@ -58,15 +59,13 @@ const cakeReducer = (
 ): typeof state => {
   switch (action.type) {
     case 'cake-ordered':
-      return {
-        ...state,
-        numOfCakes: state.numOfCakes - action.payload,
-      };
+      return produce(state, (draft) => {
+        draft.numOfCakes -= action.payload;
+      });
     case 'cake-restocked':
-      return {
-        ...state,
-        numOfCakes: state.numOfCakes + action.payload,
-      };
+      return produce(state, (draft) => {
+        draft.numOfCakes += action.payload;
+      });
     default:
       return state;
   }
@@ -78,15 +77,13 @@ const iceCreamReducer = (
 ): typeof state => {
   switch (action.type) {
     case 'ice-cream-ordered':
-      return {
-        ...state,
-        numOfIceCreams: state.numOfIceCreams - action.payload,
-      };
+      return produce(state, (draft) => {
+        draft.numOfIceCreams -= action.payload;
+      });
     case 'ice-cream-restocked':
-      return {
-        ...state,
-        numOfIceCreams: state.numOfIceCreams + action.payload,
-      };
+      return produce(state, (draft) => {
+        draft.numOfIceCreams += action.payload;
+      });
     default:
       return state;
   }
