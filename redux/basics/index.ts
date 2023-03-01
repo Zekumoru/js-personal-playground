@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { createStore, bindActionCreators } from 'redux';
 
 interface OrderAction {
   type: 'cake-ordered';
@@ -50,15 +50,16 @@ const reducer = (state = initialState, action: Action): typeof state => {
 };
 
 const store = createStore(reducer);
+const actions = bindActionCreators({ orderCake, restockCakes }, store.dispatch);
 console.log('Initial state:', store.getState());
 
 const unsubscribe = store.subscribe(() => {
   console.log('Updated state:', store.getState());
 });
 
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(restockCakes(3));
+actions.orderCake();
+actions.orderCake();
+actions.orderCake();
+actions.restockCakes(3);
 
 unsubscribe();
