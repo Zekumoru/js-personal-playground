@@ -2,15 +2,28 @@ import { createStore } from 'redux';
 
 interface OrderAction {
   type: 'cake-ordered';
-  quantity: number;
+  payload: number;
 }
 
-type Action = OrderAction;
+interface RestockAction {
+  type: 'cake-restocked';
+  payload: number;
+}
+
+type Action = OrderAction | RestockAction;
 
 const orderCake = () => {
   const action: OrderAction = {
     type: 'cake-ordered',
-    quantity: 1,
+    payload: 1,
+  };
+  return action;
+};
+
+const restockCakes = (quantity = 1) => {
+  const action: RestockAction = {
+    type: 'cake-restocked',
+    payload: quantity,
   };
   return action;
 };
@@ -24,7 +37,12 @@ const reducer = (state = initialState, action: Action): typeof state => {
     case 'cake-ordered':
       return {
         ...state,
-        numOfCakes: state.numOfCakes - action.quantity,
+        numOfCakes: state.numOfCakes - action.payload,
+      };
+    case 'cake-restocked':
+      return {
+        ...state,
+        numOfCakes: state.numOfCakes + action.payload,
       };
     default:
       return state;
@@ -41,5 +59,6 @@ const unsubscribe = store.subscribe(() => {
 store.dispatch(orderCake());
 store.dispatch(orderCake());
 store.dispatch(orderCake());
+store.dispatch(restockCakes(3));
 
 unsubscribe();
