@@ -1,0 +1,18 @@
+{
+  "name": "basics",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.20",
+    "redux": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  }
+}
