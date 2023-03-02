@@ -4,11 +4,7 @@ import {
   SerializedError,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-interface User {
-  id: number;
-  name: string;
-}
+import User from './user.types';
 
 const initialState = {
   loading: false,
@@ -20,12 +16,7 @@ const fetchUsers = createAsyncThunk('user/fetchUsers', async () => {
   const response = await axios.get(
     'https://jsonplaceholder.typicode.com/users'
   );
-  return (response.data as User[]).map(
-    (user): User => ({
-      id: user.id,
-      name: user.name,
-    })
-  );
+  return response.data as User[];
 });
 
 const userSlice = createSlice({

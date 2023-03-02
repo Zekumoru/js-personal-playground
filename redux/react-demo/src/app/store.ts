@@ -17,3 +17,4 @@ const store = configureStore({
 
 export default store;
 export type IRootState = ReturnType<typeof store.getState>;
+export type AppDisptach = typeof store.dispatch;
