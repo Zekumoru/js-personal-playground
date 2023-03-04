@@ -1,11 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { IRootState } from '../../app/store';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { ButtonsContainer } from '../../styles';
 import { cakeActions } from './cakeSlice';
 
 const CakeView = () => {
-  const numOfCakes = useSelector((state: IRootState) => state.cake.numOfCakes);
-  const dispatch = useDispatch();
+  const numOfCakes = useAppSelector((state) => state.cake.numOfCakes);
+  const dispatch = useAppDispatch();
 
   return (
     <div>

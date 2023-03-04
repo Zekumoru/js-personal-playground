@@ -1,13 +1,10 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDisptach, IRootState } from '../../app/store';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchUsers } from './userSlice';
 
 const UserView = () => {
-  const dispatch = useDispatch<AppDisptach>();
-  const { loading, users, error } = useSelector(
-    (state: IRootState) => state.user
-  );
+  const dispatch = useAppDispatch();
+  const { loading, users, error } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(fetchUsers());
