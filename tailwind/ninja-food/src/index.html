@@ -6,21 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../public/styles.css" />
+    <script src="../public/index.js" defer></script>
   </head>
   <body class="text-gray-600 font-body">
     <div class="grid md:grid-cols-3">
       <!-- content wrapper -->
-      <div class="md:col-span-1">
+      <div class="md:col-span-1 md:flex md:justify-end">
         <!-- start nav -->
-        <nav>
-          <div>
+        <nav class="text-right">
+          <div class="flex justify-between items-center">
             <h1 class="font-bold uppercase p-4 border-b border-gray-100">
               <a href="/" class="hover:text-gray-700">Food Ninja</a>
             </h1>
+            <div id="burger" class="px-4 cursor-pointer md:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            </div>
           </div>
-          <ul>
-            <li class="text-gray-700 font-bold">
-              <a href="#">
+          <ul id="menu" class="text-sm mt-6 hidden md:block">
+            <li class="text-gray-700 font-bold py-1">
+              <a
+                href="#"
+                class="px-4 flex justify-center md:justify-end gap-2 md:border-r-4 border-primary"
+              >
                 <span>Home</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -38,8 +58,11 @@
                 </svg>
               </a>
             </li>
-            <li>
-              <a href="#">
+            <li class="py-1">
+              <a
+                href="#"
+                class="px-4 flex justify-center md:justify-end gap-2 border-r-4 border-transparent"
+              >
                 <span>About</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -57,8 +80,11 @@
                 </svg>
               </a>
             </li>
-            <li>
-              <a href="#">
+            <li class="py-1">
+              <a
+                href="#"
+                class="px-4 flex justify-center md:justify-end gap-2 border-r-4 border-transparent"
+              >
                 <span>Contact</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

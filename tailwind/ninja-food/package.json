@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build-css": "tailwindcss build src/styles.css -o public/styles.css",
-    "dev": "yarn tailwindcss -i ./src/styles.css -o ./public/styles.css --watch"
+    "dev-css": "yarn tailwindcss -i ./src/styles.css -o ./public/styles.css --watch",
+    "dev-ts": " tsc src/index.ts --outFile public/index.js --target es5 --watch"
   },
   "devDependencies": {
     "tailwindcss": "^3.2.7"
