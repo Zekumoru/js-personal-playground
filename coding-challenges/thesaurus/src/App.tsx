@@ -11,11 +11,11 @@ function App() {
   const [synonyms, setSynonyms] = useState<Synonym[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchSynonyms = async () => {
+  const fetchSynonyms = async (word: string) => {
     setLoading(true);
 
     const response = await axios.get(
-      `${import.meta.env.VITE_BASE_API_URL}/words?rel_syn=${input}`
+      `${import.meta.env.VITE_BASE_API_URL}/words?rel_syn=${word}`
     );
     const data = response.data;
 
@@ -25,7 +25,12 @@ function App() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    fetchSynonyms();
+    fetchSynonyms(input);
+  };
+
+  const handleItemClick = (word: string) => {
+    setInput(word);
+    fetchSynonyms(word);
   };
 
   return (
@@ -44,7 +49,12 @@ function App() {
       ) : (
         <ul>
           {synonyms.map((synonym) => (
-            <li key={synonym.word}>{synonym.word}</li>
+            <li
+              key={synonym.word}
+              onClick={handleItemClick.bind(undefined, synonym.word)}
+            >
+              {synonym.word}
+            </li>
           ))}
         </ul>
       )}
