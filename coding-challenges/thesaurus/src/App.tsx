@@ -15,7 +15,7 @@ function App() {
     setLoading(true);
 
     const response = await axios.get(
-      `https://api.datamuse.com/words?rel_syn=${input}`
+      `${import.meta.env.VITE_BASE_API_URL}/words?rel_syn=${input}`
     );
     const data = response.data;
 
