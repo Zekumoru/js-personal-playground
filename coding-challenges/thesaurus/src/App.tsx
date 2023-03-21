@@ -23,21 +23,22 @@ function App() {
     setLoading(false);
   };
 
-  const handleClick = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     fetchSynonyms();
   };
 
   return (
     <div>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        disabled={loading}
-      />
-      <button onClick={handleClick} disabled={loading}>
-        Find synonyms
-      </button>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          disabled={loading}
+        />
+        <button disabled={loading}>Find synonyms</button>
+      </form>
       {loading ? (
         <p>Loading...</p>
       ) : (
