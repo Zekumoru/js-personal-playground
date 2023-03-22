@@ -1,10 +1,8 @@
-import axios from 'axios';
 import Superhero from '../types/superhero.types';
+import JsonDbApi from './JsonDbApi';
 
 const fetchSuperheroes = async () => {
-  const response = await axios.get(
-    `${import.meta.env.VITE_API_BASE_URL}/superheroes`
-  );
+  const response = await JsonDbApi.get('superheroes');
 
   return response.data as Superhero[];
 };

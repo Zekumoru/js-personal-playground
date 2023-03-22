@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import JsonDbApi from '../api/JsonDbApi';
 import ErrorPreview from '../components/ErrorPreview';
 import Superhero from '../types/superhero.types';
 
@@ -10,9 +10,7 @@ const Superheroes = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/superheroes`
-      );
+      const response = await JsonDbApi.get('superheroes');
 
       setError('');
       setSuperheroes(response.data);
