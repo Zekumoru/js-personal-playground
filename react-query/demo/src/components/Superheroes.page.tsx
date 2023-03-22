@@ -3,14 +3,23 @@ import { useEffect, useState } from 'react';
 import Superhero from '../types/superhero.types';
 
 const Superheroes = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [superheroes, setSuperheroes] = useState<Superhero[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
 
   const fetchData = async () => {
-    const response = await axios.get(
-      `${import.meta.env.VITE_API_BASE_URL}/superheroes`
-    );
-    setSuperheroes(response.data);
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/superheroes`
+      );
+
+      setError('');
+      setSuperheroes(response.data);
+    } catch (error) {
+      setError(error instanceof Error ? error.message : (error as string));
+      setSuperheroes([]);
+    }
+
     setIsLoading(false);
   };
 
@@ -21,7 +30,7 @@ const Superheroes = () => {
   return (
     <div className="p-4">
       <h2 className="mb-2 font-bold text-xl">
-        {isLoading ? 'Loading...' : 'Super Heroes'}
+        {isLoading ? 'Loading...' : error || 'Super Heroes'}
       </h2>
       <ul>
         {superheroes.map((hero) => (
