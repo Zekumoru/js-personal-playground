@@ -1,4 +1,5 @@
 import { Link, Route, Routes } from 'react-router-dom';
+import DynamicParallel from './pages/DynamicParallel';
 import Home from './pages/Home';
 import RQSuperhero from './pages/RQSuperhero';
 import RQSuperheroes from './pages/RQSuperheroes';
@@ -25,6 +26,10 @@ function App() {
         <Route path="/superheroes" element={<Superheroes />} />
         <Route path="/rq-superheroes" element={<RQSuperheroes />} />
         <Route path="/rq-superheroes/:heroId" element={<RQSuperhero />} />
+        <Route
+          path="/dynamic-parallel/"
+          element={<DynamicParallel heroesIds={[1, 3]} />}
+        />
       </Routes>
     </div>
   );
