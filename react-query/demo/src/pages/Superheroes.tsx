@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import ErrorPreview from '../components/ErrorPreview';
 import Superhero from '../types/superhero.types';
-import ErrorPreview from './ErrorPreview';
 
 const Superheroes = () => {
   const [superheroes, setSuperheroes] = useState<Superhero[]>([]);

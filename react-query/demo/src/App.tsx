@@ -1,7 +1,7 @@
 import { Link, Route, Routes } from 'react-router-dom';
-import Home from './components/Home.page';
-import RQSuperheroes from './components/RQSuperheroes.page';
-import Superheroes from './components/Superheroes.page';
+import Home from './pages/Home';
+import RQSuperheroes from './pages/RQSuperheroes';
+import Superheroes from './pages/Superheroes';
 
 function App() {
   return (

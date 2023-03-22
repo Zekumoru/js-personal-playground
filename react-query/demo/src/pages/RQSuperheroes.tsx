@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import fetchSuperheroes from '../api/fetchSuperheroes';
-import ErrorPreview from './ErrorPreview';
+import ErrorPreview from '../components/ErrorPreview';
 
 const RQSuperheroes = () => {
   const {
