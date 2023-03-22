@@ -1,14 +1,8 @@
-import { useQuery } from 'react-query';
-import fetchSuperheroes from '../api/fetchSuperheroes';
 import ErrorPreview from '../components/ErrorPreview';
+import useSuperheroes from '../hooks/useSuperheroes';
 
 const RQSuperheroes = () => {
-  const {
-    data: superheroes,
-    isLoading,
-    isError,
-    error,
-  } = useQuery('superheroes', fetchSuperheroes);
+  const { superheroes, isLoading, isError, error } = useSuperheroes();
 
   if (isError) {
     return <ErrorPreview error={error} />;
