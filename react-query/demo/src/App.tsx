@@ -12,17 +12,17 @@ function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/super-heroes">Traditional Super Heroes</Link>
+            <Link to="/superheroes">Traditional Super Heroes</Link>
           </li>
           <li>
-            <Link to="/rq-super-heroes">RQ Super Heroes</Link>
+            <Link to="/rq-superheroes">RQ Super Heroes</Link>
           </li>
         </ul>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/super-heroes" element={<Superheroes />} />
-        <Route path="/rq-super-heroes" element={<RQSuperheroes />} />
+        <Route path="/superheroes" element={<Superheroes />} />
+        <Route path="/rq-superheroes" element={<RQSuperheroes />} />
       </Routes>
     </div>
   );
