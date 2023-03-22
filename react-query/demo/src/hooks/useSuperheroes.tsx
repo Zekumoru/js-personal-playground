@@ -1,5 +1,6 @@
 import { useQuery, UseQueryResult } from 'react-query';
 import fetchSuperheroes from '../api/fetchSuperheroes';
+import UseCustomQueryResult from '../types/custom-usequery.types';
 import Superhero from '../types/superhero.types';
 
 type UseSuperheroesProps = {
@@ -7,14 +8,13 @@ type UseSuperheroesProps = {
   onError?: () => void;
 };
 
-type UseSuperheroesResult = Omit<UseQueryResult, 'data'> & {
-  superheroes: Superhero[] | undefined;
-};
-
 const useSuperheroes = ({
   onSuccess,
   onError,
-}: UseSuperheroesProps = {}): UseSuperheroesResult => {
+}: UseSuperheroesProps = {}): UseCustomQueryResult<
+  'superheroes',
+  Superhero[]
+> => {
   const { data: superheroes, ...values } = useQuery(
     'superheroes',
     fetchSuperheroes,

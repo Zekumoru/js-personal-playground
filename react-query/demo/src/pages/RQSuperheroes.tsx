@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import ErrorPreview from '../components/ErrorPreview';
 import useSuperheroes from '../hooks/useSuperheroes';
 
@@ -15,7 +16,9 @@ const RQSuperheroes = () => {
       </h2>
       <ul>
         {superheroes?.map((hero) => (
-          <li key={hero.name}>{hero.name}</li>
+          <li key={hero.name}>
+            <Link to={`/rq-superheroes/${hero.id}`}>{hero.name}</Link>
+          </li>
         ))}
       </ul>
     </div>

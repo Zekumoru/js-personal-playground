@@ -1,5 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
+import RQSuperhero from './pages/RQSuperhero';
 import RQSuperheroes from './pages/RQSuperheroes';
 import Superheroes from './pages/Superheroes';
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/superheroes" element={<Superheroes />} />
         <Route path="/rq-superheroes" element={<RQSuperheroes />} />
+        <Route path="/rq-superheroes/:heroId" element={<RQSuperhero />} />
       </Routes>
     </div>
   );
