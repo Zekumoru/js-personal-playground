@@ -1,8 +1,11 @@
 import React from 'react';
 
 const Home = () => {
-  console.log(import.meta.env.VITE_API_BASE_URL);
-  return <div>Home</div>;
+  return (
+    <div className="p-4">
+      <h2 className="font-bold text-xl">Welcome!</h2>
+    </div>
+  );
 };
 
 export default Home;
