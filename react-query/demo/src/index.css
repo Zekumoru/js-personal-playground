@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  .dark-scheme {
+    color-scheme: dark;
+  }
+
   html {
-    @apply dark:bg-neutral-900 dark:text-neutral-100;
+    @apply dark:bg-neutral-900 dark:text-neutral-100 dark:dark-scheme;
   }
 }

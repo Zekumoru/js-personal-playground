@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query';
 import fetchSuperheroes from '../api/fetchSuperheroes';
+import ErrorPreview from './ErrorPreview';
 
 const RQSuperheroes = () => {
   const {
@@ -9,24 +10,20 @@ const RQSuperheroes = () => {
     error,
   } = useQuery('superheroes', fetchSuperheroes);
 
+  if (isError) {
+    return <ErrorPreview error={error} />;
+  }
+
   return (
     <div className="p-4">
       <h2 className="mb-2 font-bold text-xl">
-        {isError
-          ? error instanceof Error
-            ? error.message
-            : (error as string)
-          : isLoading
-          ? 'Loading...'
-          : 'RQ Super Heroes'}
+        {isLoading ? 'Loading...' : 'RQ Super Heroes'}
       </h2>
-      {isError || (
-        <ul>
-          {superheroes?.map((hero) => (
-            <li key={hero.name}>{hero.name}</li>
-          ))}
-        </ul>
-      )}
+      <ul>
+        {superheroes?.map((hero) => (
+          <li key={hero.name}>{hero.name}</li>
+        ))}
+      </ul>
     </div>
   );
 };

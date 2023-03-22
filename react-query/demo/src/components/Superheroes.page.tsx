@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Superhero from '../types/superhero.types';
+import ErrorPreview from './ErrorPreview';
 
 const Superheroes = () => {
   const [superheroes, setSuperheroes] = useState<Superhero[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState<unknown>('');
 
   const fetchData = async () => {
     try {
@@ -16,7 +17,7 @@ const Superheroes = () => {
       setError('');
       setSuperheroes(response.data);
     } catch (error) {
-      setError(error instanceof Error ? error.message : (error as string));
+      setError(error);
       setSuperheroes([]);
     }
 
@@ -27,10 +28,14 @@ const Superheroes = () => {
     fetchData();
   }, []);
 
+  if (error) {
+    return <ErrorPreview error={error} />;
+  }
+
   return (
     <div className="p-4">
       <h2 className="mb-2 font-bold text-xl">
-        {isLoading ? 'Loading...' : error || 'Super Heroes'}
+        {isLoading ? 'Loading...' : 'Super Heroes'}
       </h2>
       <ul>
         {superheroes.map((hero) => (
