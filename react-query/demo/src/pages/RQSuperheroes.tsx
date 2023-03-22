@@ -17,7 +17,7 @@ const RQSuperheroes = () => {
 
   return (
     <div className="p-4">
-      <h2 className="mb-2 font-bold text-xl">RQ Super Heroes</h2>
+      <h2 className="mb-2 text-xl font-bold">RQ Super Heroes</h2>
       <button className="btn mb-2" onClick={() => refetch()}>
         Fetch Superheroes
       </button>

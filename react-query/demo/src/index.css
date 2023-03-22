@@ -8,12 +8,12 @@
   }
 
   html {
-    @apply dark:bg-neutral-900 dark:text-neutral-100 dark:dark-scheme;
+    @apply dark:dark-scheme dark:bg-neutral-900 dark:text-neutral-100;
   }
 }
 
 @layer components {
   .btn {
-    @apply px-4 py-2 rounded bg-neutral-300 dark:bg-neutral-700;
+    @apply rounded bg-neutral-300 px-4 py-2 dark:bg-neutral-700;
   }
 }

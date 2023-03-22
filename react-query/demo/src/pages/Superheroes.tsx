@@ -34,7 +34,7 @@ const Superheroes = () => {
 
   return (
     <div className="p-4">
-      <h2 className="mb-2 font-bold text-xl">
+      <h2 className="mb-2 text-xl font-bold">
         {isLoading ? 'Loading...' : 'Super Heroes'}
       </h2>
       <ul>

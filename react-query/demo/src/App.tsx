@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <nav>
-        <ul className="flex gap-4 mt-0 bg-slate-300 p-4 shadow dark:bg-slate-800">
+        <ul className="mt-0 flex gap-4 bg-slate-300 p-4 shadow dark:bg-slate-800">
           <li>
             <Link to="/">Home</Link>
           </li>
