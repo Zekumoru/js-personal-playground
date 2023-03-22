@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import ErrorPreview from '../components/ErrorPreview';
 import useSuperheroes from '../hooks/useSuperheroes';
+import ArrowLongRightIcon from '../icons/ArrowLongRightIcon';
 
 const RQSuperheroes = () => {
   const { superheroes, isLoading, isError, error } = useSuperheroes();
@@ -17,7 +18,10 @@ const RQSuperheroes = () => {
       <ul>
         {superheroes?.map((hero) => (
           <li key={hero.name}>
-            <Link to={`/rq-superheroes/${hero.id}`}>{hero.name}</Link>
+            <Link to={`/rq-superheroes/${hero.id}`} className="flex gap-1">
+              <div>{hero.name}</div>
+              <ArrowLongRightIcon className="w-6 h-6" />
+            </Link>
           </li>
         ))}
       </ul>
