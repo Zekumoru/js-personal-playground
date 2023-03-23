@@ -26,6 +26,12 @@ const Home = () => {
             <ArrowLongRightIcon className="h-6 w-6" />
           </Link>
         </li>
+        <li>
+          <Link className="flex gap-1" to="/infinite-queries">
+            <div>Infinite Queries</div>
+            <ArrowLongRightIcon className="h-6 w-6" />
+          </Link>
+        </li>
       </ul>
     </div>
   );
