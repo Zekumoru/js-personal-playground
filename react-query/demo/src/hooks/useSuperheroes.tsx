@@ -1,4 +1,9 @@
-import { useQuery, useMutation, MutationFunction } from 'react-query';
+import {
+  useQuery,
+  useMutation,
+  MutationFunction,
+  useQueryClient,
+} from 'react-query';
 import fetchSuperheroes from '../api/fetchSuperheroes';
 import JsonDbApi from '../api/JsonDbApi';
 import UseCustomQueryResult from '../types/custom-usequery.types';
@@ -35,7 +40,14 @@ type useAddSuperheroProps = {
 };
 
 const useAddSuperhero = ({ onSuccess, onError }: useAddSuperheroProps = {}) => {
-  return useMutation(addSuperhero, { onSuccess, onError });
+  const queryClient = useQueryClient();
+  return useMutation(addSuperhero, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('superheroes');
+      onSuccess?.();
+    },
+    onError,
+  });
 };
 
 export default useSuperheroes;
