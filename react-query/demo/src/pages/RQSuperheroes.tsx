@@ -75,8 +75,10 @@ const RQSuperheroes = () => {
             onChange={(e) => setAlterEgo(e.target.value)}
           />
         </div>
-        <button className="btn mt-4">Add Superhero</button>
-        {isLoadingAdding && <div>Adding hero...</div>}
+        <div className="mt-4 flex items-center gap-3">
+          <button className="btn">Add Superhero</button>
+          {isLoadingAdding && <div>Adding hero...</div>}
+        </div>
       </form>
       <ul>
         {superheroes?.map((hero) => (
