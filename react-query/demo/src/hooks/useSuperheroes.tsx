@@ -30,21 +30,24 @@ const useSuperheroes = ({
   return { superheroes, ...values };
 };
 
-const addSuperhero = async (superhero: Superhero): Promise<void> => {
-  await JsonDbApi.post('/superheroes', superhero);
+const addSuperhero = async (superhero: Superhero): Promise<Superhero> => {
+  const response = await JsonDbApi.post('/superheroes', superhero);
+  return response.data as Superhero;
 };
 
 type useAddSuperheroProps = {
-  onSuccess?: () => void;
+  onSuccess?: (superhero: Superhero) => void;
   onError?: () => void;
 };
 
 const useAddSuperhero = ({ onSuccess, onError }: useAddSuperheroProps = {}) => {
   const queryClient = useQueryClient();
   return useMutation(addSuperhero, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('superheroes');
-      onSuccess?.();
+    onSuccess: (superhero) => {
+      queryClient.setQueryData<Superhero[]>('superheroes', (superheroes) => {
+        return [...(superheroes ?? []), superhero];
+      });
+      onSuccess?.(superhero);
     },
     onError,
   });
