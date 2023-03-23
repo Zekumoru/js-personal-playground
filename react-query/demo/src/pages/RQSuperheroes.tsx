@@ -1,7 +1,8 @@
 import { useId, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ErrorPreview from '../components/ErrorPreview';
-import useSuperheroes, { useAddSuperhero } from '../hooks/useSuperheroes';
+import useAddSuperhero from '../hooks/useAddSuperhero';
+import useSuperheroes from '../hooks/useSuperheroes';
 import ArrowLongRightIcon from '../icons/ArrowLongRightIcon';
 import Superhero from '../types/superhero.types';
 
