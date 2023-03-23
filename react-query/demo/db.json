@@ -15,5 +15,23 @@
       "name": "Wonder Woman",
       "alterEgo": "Princess Diana"
     }
+  ],
+  "users": [
+    {
+      "id": "zekumoru",
+      "skillsId": "zekumoru-skills"
+    }
+  ],
+  "skills": [
+    {
+      "id": "zekumoru-skills",
+      "skills": [
+        "React",
+        "Redux Toolkit",
+        "React Query",
+        "TailwindCSS",
+        "Styled Components"
+      ]
+    }
   ]
 }

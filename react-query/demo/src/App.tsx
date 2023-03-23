@@ -1,4 +1,5 @@
 import { Link, Route, Routes } from 'react-router-dom';
+import DependentQueries from './pages/DependentQueries';
 import DynamicParallel from './pages/DynamicParallel';
 import Home from './pages/Home';
 import RQSuperhero from './pages/RQSuperhero';
@@ -29,6 +30,10 @@ function App() {
         <Route
           path="/dynamic-parallel/"
           element={<DynamicParallel heroesIds={[1, 3]} />}
+        />
+        <Route
+          path="/dependent-queries"
+          element={<DependentQueries username="zekumoru" />}
         />
       </Routes>
     </div>
