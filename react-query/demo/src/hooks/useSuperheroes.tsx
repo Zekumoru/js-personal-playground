@@ -1,5 +1,6 @@
-import { useQuery, UseQueryResult } from 'react-query';
+import { useQuery, useMutation, MutationFunction } from 'react-query';
 import fetchSuperheroes from '../api/fetchSuperheroes';
+import JsonDbApi from '../api/JsonDbApi';
 import UseCustomQueryResult from '../types/custom-usequery.types';
 import Superhero from '../types/superhero.types';
 
@@ -24,4 +25,18 @@ const useSuperheroes = ({
   return { superheroes, ...values };
 };
 
+const addSuperhero = async (superhero: Superhero): Promise<void> => {
+  await JsonDbApi.post('/superheroes', superhero);
+};
+
+type useAddSuperheroProps = {
+  onSuccess?: () => void;
+  onError?: () => void;
+};
+
+const useAddSuperhero = ({ onSuccess, onError }: useAddSuperheroProps = {}) => {
+  return useMutation(addSuperhero, { onSuccess, onError });
+};
+
 export default useSuperheroes;
+export { useAddSuperhero };
