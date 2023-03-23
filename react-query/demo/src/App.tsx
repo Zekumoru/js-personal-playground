@@ -2,6 +2,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import DependentQueries from './pages/DependentQueries';
 import DynamicParallel from './pages/DynamicParallel';
 import Home from './pages/Home';
+import PaginatedQueries from './pages/PaginatedQueries';
 import RQSuperhero from './pages/RQSuperhero';
 import RQSuperheroes from './pages/RQSuperheroes';
 import Superheroes from './pages/Superheroes';
@@ -35,6 +36,7 @@ function App() {
           path="/dependent-queries"
           element={<DependentQueries username="zekumoru" />}
         />
+        <Route path="/paginated-queries" element={<PaginatedQueries />} />
       </Routes>
     </div>
   );
