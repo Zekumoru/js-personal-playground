@@ -1,5 +1,12 @@
+import Foo from './components/Foo';
+import NestedProvider from './contexts/NestedContext';
+
 function App() {
-  return <div></div>;
+  return (
+    <NestedProvider>
+      <Foo />
+    </NestedProvider>
+  );
 }
 
 export default App;
