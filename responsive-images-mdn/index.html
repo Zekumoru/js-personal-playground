@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Responsive Images</title>
+  </head>
+  <body>
+    <h1>Responsive Images</h1>
+
+    <h2>Art Direction</h2>
+    <picture>
+      <source
+        media="(max-width: 799px)"
+        srcset="./img/yuzuki_cloudy_480w.jpeg"
+      />
+      <img
+        src="./img/yuzuki_cloudy.jpeg"
+        alt="Yuzuki staring at the cloudy sky on green fields"
+      />
+    </picture>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dapibus
+      vestibulum scelerisque. Duis non lacus id dui sollicitudin bibendum sit
+      amet vitae leo. Interdum et malesuada fames ac ante ipsum primis in
+      faucibus. Donec interdum a enim nec blandit. Nullam ac lacinia lectus.
+      Suspendisse maximus pretium lorem, eget iaculis libero. Duis lobortis
+      dolor ac nulla molestie, eget volutpat quam pulvinar. Nunc fringilla, est
+      eu blandit gravida, nunc ipsum pellentesque sem, eu suscipit mi velit in
+      diam. Mauris et lacinia mi, in molestie lectus.
+    </p>
+
+    <h2>Resolution Switching</h2>
+    <!-- Using the code below does not load the correct 
+      low-res 480w counterpart on smaller screen. 
+      Stated by many others on StackOverflow that it's 
+      because the browser has already loaded the hd version, 
+      however, clearing the cache or opening it up in mobile 
+      incognito mode still does not make it work. Hence 
+      <picture> is used instead as seen after the code below.
+    <img
+      srcset="
+        ./img/yuzuki_looksup-480w.jpeg 480w,
+        ./img/yuzuki_looksup.jpeg      800w
+      "
+      sizes="(max-width: 600px) 480px, 800px"
+      src="./img/yuzuki_looksup.jpeg"
+      alt="Yuzuki staring on the sky"
+    /> -->
+    <picture>
+      <source
+        media="(max-width: 600px)"
+        srcset="./img/yuzuki_looksup-480w.jpeg"
+      />
+      <img src="./img/yuzuki_looksup.jpeg" alt="Yuzuki staring on the sky" />
+    </picture>
+    <!-- WARNING: The solution to use <picture> for the 
+      aforementioned issue might not be good so as to download
+      twice the image (the low-res one and the high-res) when
+      the viewport changes since it will cause more bandwidth. -->
+    <p>
+      Sed convallis sapien ex, quis hendrerit est fermentum a. Suspendisse
+      aliquam scelerisque erat non faucibus. Mauris nec nunc felis. Morbi magna
+      leo, interdum id sagittis ut, sodales auctor justo. Ut sollicitudin,
+      turpis vitae aliquam lacinia, dui erat convallis nisl, ac ullamcorper orci
+      magna quis eros. Interdum et malesuada fames ac ante ipsum primis in
+      faucibus. Aenean eleifend ante a arcu commodo, id tempus dolor molestie.
+      Nullam augue tortor, euismod at faucibus in, tincidunt nec ipsum. Nunc ac
+      dictum tellus, pharetra placerat ante. Curabitur mauris augue, consequat
+      eu laoreet eget, euismod at ipsum. Curabitur hendrerit arcu consectetur,
+      tincidunt sem sed, vulputate odio. Maecenas justo enim, finibus non diam
+      eget, aliquet condimentum ex. Quisque consequat fermentum quam.
+    </p>
+  </body>
+</html>
